@@ -1,7 +1,3 @@
-# Dataset (materialized by data/download.py from a local/Roboflow source;
-# not committed -- regenerate with `python data/download.py`)
-data/bottle-defects/
-
 # Python
 __pycache__/
 *.pyc
