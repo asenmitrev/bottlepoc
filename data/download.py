@@ -113,13 +113,18 @@ def main() -> None:
     source_override = args.source or env.get("BOTTLE_DATASET_SOURCE_DIR") or os.environ.get("BOTTLE_DATASET_SOURCE_DIR")
     source_override = source_override or None
 
-    source = find_source_dataset(source_override)
-    if source is not None:
-        print(f"[download] Using local dataset at: {source}")
-        copy_dataset(source, DEST_DIR)
+    if source_override is None and is_valid_coco_dataset(DEST_DIR):
+        # Fresh clone of this repo: the dataset is vendored directly at
+        # data/bottle-defects/ (see NOTICE.md), so there's nothing to fetch.
+        print(f"[download] Dataset already present (vendored in repo) at: {DEST_DIR}")
     else:
-        source = fallback_roboflow_download(DEST_DIR, env)
-        copy_dataset(source, DEST_DIR)
+        source = find_source_dataset(source_override)
+        if source is not None:
+            print(f"[download] Using local dataset at: {source}")
+            copy_dataset(source, DEST_DIR)
+        else:
+            source = fallback_roboflow_download(DEST_DIR, env)
+            copy_dataset(source, DEST_DIR)
 
     print(f"[download] Dataset materialized at: {DEST_DIR}\n")
 
