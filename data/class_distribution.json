@@ -1,0 +1,47 @@
+{
+  "class_counts": {
+    "Broken Cap": {
+      "train": 35,
+      "valid": 13,
+      "test": 15
+    },
+    "Broken Ring": {
+      "train": 35,
+      "valid": 8,
+      "test": 23
+    },
+    "Good Cap": {
+      "train": 152,
+      "valid": 43,
+      "test": 23
+    },
+    "Loose Cap": {
+      "train": 89,
+      "valid": 23,
+      "test": 46
+    },
+    "No Cap": {
+      "train": 112,
+      "valid": 32,
+      "test": 17
+    }
+  },
+  "split_totals": {
+    "train": {
+      "images": 398,
+      "annotations": 423
+    },
+    "valid": {
+      "images": 113,
+      "annotations": 119
+    },
+    "test": {
+      "images": 112,
+      "annotations": 124
+    }
+  },
+  "imbalanced_classes": {
+    "Broken Cap": 63,
+    "Broken Ring": 66
+  }
+}

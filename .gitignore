@@ -1,0 +1,19 @@
+# Dataset (materialized by data/download.py from a local/Roboflow source;
+# not committed -- regenerate with `python data/download.py`)
+data/bottle-defects/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+*.egg-info/
+
+# Training artifacts (large binaries, regenerate via train.py/export.py)
+runs/
+eval_results/
+*.pth
+*.onnx
+
+# Secrets
+.env

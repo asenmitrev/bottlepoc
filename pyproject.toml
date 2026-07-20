@@ -1,0 +1,33 @@
+[project]
+name = "bottle-cap-poc"
+version = "0.1.0"
+description = "PoC: can a compact edge detector classify bottle cap condition on the Bottle Caps/Bottle Defects dataset?"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    # RF-DETR (Apache 2.0) -- github.com/roboflow/rf-detr. Pulls in torch,
+    # torchvision, and supervision transitively. On the training machine,
+    # install torch/torchvision FIRST with the CUDA-matched index
+    # (see README.md) so this doesn't silently grab a CPU wheel.
+    "rfdetr>=1.8.0,<2",
+    "supervision>=0.24",
+    "onnx>=1.16",
+    "onnxruntime>=1.18",
+    "pillow>=10.0",
+    "numpy>=1.26,<2.1",
+    "pandas>=2.2",
+    "matplotlib>=3.8",
+    "scikit-learn>=1.4",
+    "pycocotools>=2.0.7",
+    # Only needed for the Roboflow-API fallback path in data/download.py.
+    "roboflow>=1.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+# On the CUDA training box, prefer onnxruntime-gpu over plain onnxruntime
+# for export.py's accuracy check to also reflect edge-relevant latency:
+#   uv pip uninstall onnxruntime && uv pip install onnxruntime-gpu
+gpu = ["onnxruntime-gpu>=1.18"]
+
+[tool.uv]
+package = false
